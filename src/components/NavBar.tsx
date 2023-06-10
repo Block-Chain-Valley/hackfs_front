@@ -6,13 +6,13 @@ import { cn } from "../utils/cn";
 function NavBar({ handleClickNavLink }: { handleClickNavLink: any }) {
   const location = useLocation();
   return (
-    <div className="flex a mt-5 flex-row  items-center">
-      <div className="flex  mr-5 ">
+    <div className="flex flex-row  items-center border-b-2  border-blue-400 ">
+      <div className="flex ml-5 ">
         <Link
           className={cn(
             " cursor-pointer mr-1",
             location.pathname === "/"
-              ? "border-b-2 border-b-black pb-1.5"
+              ? "border-b-2 border-b-white pb-1"
               : "pb-2"
           )}
           to={ROUTES.HOME}
@@ -32,7 +32,7 @@ function NavBar({ handleClickNavLink }: { handleClickNavLink: any }) {
           className={cn(
             " cursor-pointer mr-1",
             location.pathname === "/about"
-              ? "border-b-2 border-b-black pb-1.5"
+              ? "border-b-2 border-b-white pb-1.5"
               : "pb-2"
           )}
           to={ROUTES.ABOUT}

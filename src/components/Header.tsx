@@ -2,6 +2,7 @@ import React from "react";
 import NavBar from "./NavBar";
 import { useConnectWalletbyMetamask } from "../states/wallet.state";
 import { ellipsisAddress } from "../utils/ellipsisAddress";
+import logo from "../../public/logo.png";
 
 interface Account {
   address: string;
@@ -20,20 +21,21 @@ function Header({ handleClickNavLink }: { handleClickNavLink: any }) {
 
   return (
     <div className="bg-none flex-col items-center">
-      <div className="flex ">
-        <img
-          src="https://i.imgur.com/1Q1Z1Zy.png"
-          className="w-16 h-16"
-          alt="logo"
-        />
-        <div className="m-auto">This is Template</div>
+      <div className="flex items-center justify-between m-6 ">
+        <div className="flex justify-center items-center">
+          <img src={logo} className="w-24 h-24" alt="logo" />
+          <div className="m-auto">This is Template</div>
+        </div>
 
         {account ? (
           <button className="btn btn-secondary" onClick={onDisconnect}>
             {ellipsisAddress(account)}
           </button>
         ) : (
-          <button className="btn btn-primary" onClick={connect}>
+          <button
+            className="w-[150px] h-[50px] bg-blue-500 text-white rounded-md"
+            onClick={connect}
+          >
             Connect
           </button>
         )}
