@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import About from "./About";
-import Contact from "./Contact";
+import Contact from "./Upload";
 import logo from "../../public/logo.png";
 
 function Home({ sectionRefs }: { sectionRefs: any }) {

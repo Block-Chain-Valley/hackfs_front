@@ -50,6 +50,28 @@ function NavBar({ handleClickNavLink }: { handleClickNavLink: any }) {
             </p>
           </div>
         </Link>
+        <Link
+          className={cn(
+            " cursor-pointer mr-1",
+            location.pathname === "/upload"
+              ? "border-b-2 border-b-white pb-1.5"
+              : "pb-2"
+          )}
+          to={ROUTES.UPLOAD}
+        >
+          <div className="flex items-center px-3">
+            <p
+              className={cn(
+                "font-lg",
+                location.pathname === "/upload"
+                  ? "font-semibold"
+                  : "text-neutral-400"
+              )}
+            >
+              Upload
+            </p>
+          </div>
+        </Link>
       </div>
     </div>
   );

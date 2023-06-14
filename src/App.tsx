@@ -4,7 +4,7 @@ import "./App.css";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import About from "./pages/About";
-import Contact from "./pages/Contact";
+import Upload from "./pages/Upload";
 import Home from "./pages/Home";
 
 function App() {
@@ -30,7 +30,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home sectionRefs={sectionRefs} />} />
           <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/upload" element={<Upload />} />
         </Routes>
       </div>
       <Footer />

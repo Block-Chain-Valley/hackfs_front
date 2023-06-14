@@ -1,7 +1,7 @@
 const ROUTES = {
   HOME: "/",
   ABOUT: "/about",
-  HEDGE: "/hedge",
+  UPLOAD: "/upload",
   FUTURE: "/future",
 };
 
