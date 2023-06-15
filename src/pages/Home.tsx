@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import About from "./About";
 import Contact from "./Upload";
 import logo from "../../public/logo.png";

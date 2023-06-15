@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "./NavBar";
-import { useConnectWalletbyMetamask } from "../states/wallet.state";
+import { useConnectWalletbyMetamask, useWallet } from "../states/wallet.state";
 import { ellipsisAddress } from "../utils/ellipsisAddress";
 import logo from "../../public/logo.png";
-import { fetchTokenBalance } from "../utils/getTokenBalance";
-import { BigNumber } from "ethers";
+
+import { BigNumber, ethers } from "ethers";
+import { runMain } from "../utils/getBalancesByAlchemy";
+import { providers } from "ethers";
 
 interface Account {
   address: string;
@@ -24,15 +26,27 @@ function Header({ handleClickNavLink }: { handleClickNavLink: any }) {
 
   const [TokenBalance, setTokenBalance] = useState<TokenBalance[] | null>(null);
 
+  const [ethBalance, setEthBalance] = useState<string | null>(null);
+
+  const getEthBalance = async (account: string) => {
+    console.log("ji");
+    if (!account) return;
+    if (!window.ethereum) return;
+    const provider = new ethers.providers.Web3Provider(window.ethereum as any);
+    const balance = await provider?.getBalance(account);
+    console.log(balance?.toString());
+
+    setEthBalance(balance?.toString());
+  };
+
   const onDisconnect = () => {
     if (confirm("Disconnect Wallet?")) disconnect();
   };
 
   useEffect(() => {
     if (!account) return;
-    fetchTokenBalance(account).then((tokenBalance) => {
-      setTokenBalance(tokenBalance);
-    });
+    runMain(account);
+    getEthBalance(account);
   }, [account]);
 
   return (
