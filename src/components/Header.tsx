@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "./NavBar";
 import { useConnectWalletbyMetamask } from "../states/wallet.state";
 import { ellipsisAddress } from "../utils/ellipsisAddress";
 import logo from "../../public/logo.png";
+import { fetchTokenBalance } from "../utils/getTokenBalance";
+import { BigNumber } from "ethers";
 
 interface Account {
   address: string;
@@ -10,14 +12,28 @@ interface Account {
   ens: { name: string | undefined; avatar: string | undefined };
 }
 
+interface TokenBalance {
+  contractAddress: string;
+  balance: BigNumber;
+}
+
 function Header({ handleClickNavLink }: { handleClickNavLink: any }) {
   const { account, chainId, connect, disconnect } =
     useConnectWalletbyMetamask();
   //const chain = Chain.get(chainId);
 
+  const [TokenBalance, setTokenBalance] = useState<TokenBalance[] | null>(null);
+
   const onDisconnect = () => {
     if (confirm("Disconnect Wallet?")) disconnect();
   };
+
+  useEffect(() => {
+    if (!account) return;
+    fetchTokenBalance(account).then((tokenBalance) => {
+      setTokenBalance(tokenBalance);
+    });
+  }, [account]);
 
   return (
     <div className="bg-none flex-col items-center">
@@ -38,6 +54,13 @@ function Header({ handleClickNavLink }: { handleClickNavLink: any }) {
             <div className="flex justify-center  bg-slate-500 top-32  w-[250px] h-full absolute ">
               ho
             </div>
+
+            {TokenBalance?.map((tokenBalance) => (
+              <div key={tokenBalance.contractAddress}>
+                {tokenBalance.contractAddress} :{" "}
+                {tokenBalance.balance.toString()}
+              </div>
+            ))}
           </div>
         ) : (
           <button
