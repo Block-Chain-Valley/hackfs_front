@@ -104,20 +104,22 @@ const FileUploader: React.FC = () => {
             style={{ maxWidth: "300px" }}
           />
           <button
-            className="w-[150px] h-[50px] bg-blue-500 text-white rounded-md hover:bg-blue-600 "
+            className="w-[150px] h-[50px] m-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 "
             onClick={uploadToIpfs}
             disabled={!uploadedFile || loading}
           >
-            "Upload to IPFS"
+            Upload to IPFS
           </button>
         </div>
       ) : (
         <></>
       )}
 
-      {!loading && <Loading />}
+      {loading && <Loading />}
 
-      {ipfsHash && <p>IPFS Hash: {ipfsHash}</p>}
+      {ipfsHash && (
+        <div className="text-xl font-extrabold m-4">IPFS Hash: {ipfsHash}</div>
+      )}
     </div>
   );
 };
