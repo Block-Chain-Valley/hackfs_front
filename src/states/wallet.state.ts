@@ -18,7 +18,7 @@ export const accountAtom = atom<string | null>({
 export const chainIdAtom = atom<number>({
   key: "atom/chainId",
   // TODO: CHANGE DEFAULT CHAIN ID
-  default: CHAINID.Linea,
+  default: CHAINID.Goerli,
 });
 export const signerAtom = atom<ethers.Signer | null>({
   key: "atom/signer",

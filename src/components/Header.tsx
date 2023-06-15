@@ -35,7 +35,7 @@ function Header({ handleClickNavLink }: { handleClickNavLink: any }) {
             >
               {ellipsisAddress(account)}
             </button>
-            <div className="flex justify-center  bg-slate-500 top-32  w-[250px] h-[500px] absolute ">
+            <div className="flex justify-center  bg-slate-500 top-32  w-[250px] h-full absolute ">
               ho
             </div>
           </div>
