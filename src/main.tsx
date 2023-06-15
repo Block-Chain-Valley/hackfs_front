@@ -4,7 +4,6 @@ import App from "./App";
 import "./index.css";
 import { MetaMaskInpageProvider } from "@metamask/providers";
 import { RecoilRoot } from "recoil";
-import { HeliaProvider } from "../src/provider/HeliaProvider";
 
 declare global {
   interface Window {
