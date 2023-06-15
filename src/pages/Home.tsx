@@ -76,14 +76,6 @@ function Home({ sectionRefs }: { sectionRefs: any }) {
           </div>
         </div>
       </div>
-
-      <div ref={sectionRefs[1]}>
-        <About />
-      </div>
-
-      <div ref={sectionRefs[2]}>
-        <Contact />
-      </div>
     </main>
   );
 }
