@@ -28,28 +28,7 @@ function NavBar({ handleClickNavLink }: { handleClickNavLink: any }) {
             </p>
           </div>
         </Link>
-        <Link
-          className={cn(
-            " cursor-pointer mr-1",
-            location.pathname === "/about"
-              ? "border-b-2 border-b-white pb-1.5"
-              : "pb-2"
-          )}
-          to={ROUTES.ABOUT}
-        >
-          <div className="flex items-center px-3">
-            <p
-              className={cn(
-                "font-lg",
-                location.pathname === "/about"
-                  ? "font-semibold"
-                  : "text-neutral-400"
-              )}
-            >
-              About
-            </p>
-          </div>
-        </Link>
+
         <Link
           className={cn(
             " cursor-pointer mr-1",
@@ -69,6 +48,28 @@ function NavBar({ handleClickNavLink }: { handleClickNavLink: any }) {
               )}
             >
               Upload
+            </p>
+          </div>
+        </Link>
+        <Link
+          className={cn(
+            " cursor-pointer mr-1",
+            location.pathname === "/about"
+              ? "border-b-2 border-b-white pb-1.5"
+              : "pb-2"
+          )}
+          to={ROUTES.ABOUT}
+        >
+          <div className="flex items-center px-3">
+            <p
+              className={cn(
+                "font-lg",
+                location.pathname === "/about"
+                  ? "font-semibold"
+                  : "text-neutral-400"
+              )}
+            >
+              About
             </p>
           </div>
         </Link>

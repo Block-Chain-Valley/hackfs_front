@@ -28,9 +28,17 @@ function Header({ handleClickNavLink }: { handleClickNavLink: any }) {
         </div>
 
         {account ? (
-          <button className="btn btn-secondary" onClick={onDisconnect}>
-            {ellipsisAddress(account)}
-          </button>
+          <div className="flex items-center justify-center">
+            <button
+              className="flex items-center justify-center p-4 border-4 border-blue-500 rounded-md "
+              onClick={onDisconnect}
+            >
+              {ellipsisAddress(account)}
+            </button>
+            <div className="flex justify-center  bg-slate-500 top-32  w-[250px] h-[500px] absolute ">
+              ho
+            </div>
+          </div>
         ) : (
           <button
             className="w-[150px] h-[50px] bg-blue-500 text-white rounded-md"
