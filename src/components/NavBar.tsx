@@ -45,7 +45,7 @@ function NavBar({ handleClickNavLink }: { handleClickNavLink: any }) {
           to={ROUTES.UPLOAD}
         >
           <div className="flex items-center px-3">
-            <p
+            <div
               className={cn(
                 "font-lg",
                 location.pathname === "/upload"
@@ -57,7 +57,7 @@ function NavBar({ handleClickNavLink }: { handleClickNavLink: any }) {
                 <BiUpload className="mr-2" />
                 Upload
               </div>
-            </p>
+            </div>
           </div>
         </Link>
         <Link
@@ -70,7 +70,7 @@ function NavBar({ handleClickNavLink }: { handleClickNavLink: any }) {
           to={ROUTES.ABOUT}
         >
           <div className="flex items-center px-3">
-            <p
+            <div
               className={cn(
                 "font-lg",
                 location.pathname === "/about"
@@ -82,7 +82,7 @@ function NavBar({ handleClickNavLink }: { handleClickNavLink: any }) {
                 <LuLayoutDashboard className="mr-2" />
                 DashBoard
               </div>
-            </p>
+            </div>
           </div>
         </Link>
       </div>
