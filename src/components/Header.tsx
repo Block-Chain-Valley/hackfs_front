@@ -67,7 +67,7 @@ function Header({ handleClickNavLink }: { handleClickNavLink: any }) {
 
   useEffect(() => {
     if (!account) return;
-    //getTokenInfos(account);
+    getTokenInfos(account);
     console.log("hi");
 
     getEthBalance(account);

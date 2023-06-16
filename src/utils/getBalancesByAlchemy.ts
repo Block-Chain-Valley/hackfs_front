@@ -10,7 +10,7 @@ interface TokenInfo {
 
 const config = {
   apiKey: import.meta.env.VITE_ALCHEMY_KEY as string,
-  network: Network.ETH_MAINNET,
+  network: Network.MATIC_MUMBAI,
 };
 
 const alchemy = new Alchemy(config);

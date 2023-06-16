@@ -2,19 +2,36 @@ import React, { useEffect, useRef, useState } from "react";
 import About from "./About";
 import Contact from "./Upload";
 import logo from "../../public/logo.png";
-import { useWallet } from "../states/wallet.state";
-import { FreeERC20 } from "../types";
+import { useSigner, useWallet } from "../states/wallet.state";
+import { FileSwap, FreeERC20 } from "../types";
 import { ethers, utils } from "ethers";
 import FreeERC20ABI from "../abi/FreeERC20.json";
+import FileSwapABI from "../abi/FileSwap.json";
 
 function Home({ sectionRefs }: { sectionRefs: any }) {
-  const { account, chainId, signer } = useWallet();
+  const { account, chainId } = useWallet();
+  const { signer } = useSigner();
 
   const Matic: FreeERC20 = new ethers.Contract(
-    "0x664088Ef1D8C5B156B8c8e1d25029c46D700E607",
+    import.meta.env.VITE_MATIC_ADDRESS_KEY as string,
     FreeERC20ABI,
     signer
   ) as FreeERC20;
+  const Klay: FreeERC20 = new ethers.Contract(
+    import.meta.env.VITE_KLAY_ADDRESS_KEY as string,
+    FreeERC20ABI,
+    signer
+  ) as FreeERC20;
+  const USDT: FreeERC20 = new ethers.Contract(
+    import.meta.env.VITE_USDT_ADDRESS_KEY as string,
+    FreeERC20ABI,
+    signer
+  ) as FreeERC20;
+  const FileSwap: FileSwap = new ethers.Contract(
+    import.meta.env.VITE_FILESWAP_ADDRESS_KEY as string,
+    FileSwapABI,
+    signer
+  ) as FileSwap;
 
   const mintMatic = async (account) => {
     console.log(signer);
@@ -22,10 +39,72 @@ function Home({ sectionRefs }: { sectionRefs: any }) {
     if (!window.ethereum) return;
     await Matic.mint(account, utils.parseEther("10000"));
   };
+  const mintKlay = async (account) => {
+    if (!account) return;
+    if (!window.ethereum) return;
+    await Klay.mint(account, utils.parseEther("10000"));
+  };
+  const mintUSDT = async (account) => {
+    if (!account) return;
+    if (!window.ethereum) return;
+    await USDT.mint(account, utils.parseEther("10000"));
+  };
+
+  const getMaticBalance = async (account) => {
+    if (!account) return;
+    if (!window.ethereum) return;
+    const balance = await Matic.balanceOf(account);
+    console.log(utils.formatEther(balance));
+  };
+  const getKlayBalance = async (account) => {
+    if (!account) return;
+    if (!window.ethereum) return;
+    const balance = await Klay.balanceOf(account);
+    console.log(utils.formatEther(balance));
+  };
+  const getUSDTBalance = async (account) => {
+    if (!account) return;
+    if (!window.ethereum) return;
+    const balance = await USDT.balanceOf(account);
+    console.log(utils.formatEther(balance));
+  };
+
+  const swap = async () => {
+    if (!account) return;
+    await Matic.approve(
+      import.meta.env.VITE_FILESWAP_ADDRESS_KEY as string,
+      utils.parseEther("17")
+    );
+    await Klay.approve(
+      import.meta.env.VITE_FILESWAP_ADDRESS_KEY as string,
+      utils.parseEther("35")
+    );
+    await USDT.approve(
+      import.meta.env.VITE_FILESWAP_ADDRESS_KEY as string,
+      utils.parseEther("20")
+    );
+    const tx = await FileSwap.stake(
+      [
+        import.meta.env.VITE_MATIC_ADDRESS_KEY as string,
+        import.meta.env.VITE_KLAY_ADDRESS_KEY as string,
+        import.meta.env.VITE_USDT_ADDRESS_KEY as string,
+      ],
+      [utils.parseEther("17"), utils.parseEther("35"), utils.parseEther("20")]
+    );
+    await tx.wait();
+    console.log(tx);
+  };
 
   return (
     <main className="flex flex-col  items-center justify-center">
-      <button onClick={() => mintMatic(account)}>Mint</button>
+      <button onClick={() => mintMatic(account)}>Mint FileMatic</button>
+      <button onClick={() => getMaticBalance(account)}>view FileMatic</button>
+      <button onClick={() => mintKlay(account)}>Mint FileKlay</button>
+      <button onClick={() => getKlayBalance(account)}>view FileKlay</button>
+      <button onClick={() => mintUSDT(account)}>Mint FileUSDT</button>
+      <button onClick={() => getUSDTBalance(account)}>view FileUSDT</button>
+      <button onClick={() => swap()}>swap</button>
+
       <div className="flex items-center  h-[604px] mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <div className="flex-col mr-4">
           <div className="w-[600px] h-[200px] text-6xl font-semibold leading-14">
