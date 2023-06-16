@@ -34,7 +34,7 @@ const FileUploader: React.FC = () => {
     // const file = event.dataTransfer?.files?.[0];
     const file = event.dataTransfer.files;
     if (file) {
-      setUploadedFile(file);
+      setUploadedFile(file as any);
     }
   };
 
@@ -77,12 +77,6 @@ const FileUploader: React.FC = () => {
     setLoading(false);
   };
 
-  const progressCallback = (progressData) => {
-    let percentageDone =
-      100 - (progressData?.total / progressData?.uploaded)?.toFixed(2);
-    console.log(percentageDone);
-  };
-
   const uploadToLighthouse = async () => {
     if (!uploadedFile) {
       return;
@@ -91,8 +85,7 @@ const FileUploader: React.FC = () => {
 
     const response = await lighthouse.upload(
       uploadedFile,
-      import.meta.env.VITE_LH_API_KEY,
-      progressCallback
+      import.meta.env.VITE_LH_API_KEY
     );
     if (response.data.Hash) {
       setIpfsHash(response.data.Hash);
