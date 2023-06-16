@@ -19,6 +19,7 @@ import home4 from "../assets/home/home4.png";
 import home5 from "../assets/home/home5.png";
 import { Link } from "react-router-dom";
 import ROUTES from "../routes";
+import useScrollFadeIn from "../hooks/useScrollFadeIn";
 
 const plans = [
   {
@@ -44,9 +45,19 @@ const plans = [
   },
 ];
 
-function Home({ sectionRefs }: { sectionRefs: any }) {
+function Home() {
   const { account, chainId } = useWallet();
   const { signer } = useSigner();
+
+  const animatedItem = {
+    0: useScrollFadeIn("down", 1, 0),
+    1: useScrollFadeIn("left", 2, 0),
+    2: useScrollFadeIn("right", 2, 0),
+    3: useScrollFadeIn("up", 1, 0),
+    4: useScrollFadeIn("up", 1, 0),
+    5: useScrollFadeIn("up", 1, 0),
+    6: useScrollFadeIn("up", 1, 0),
+  };
 
   const Matic: FreeERC20 = new ethers.Contract(
     import.meta.env.VITE_MATIC_ADDRESS_KEY as string,
@@ -170,17 +181,19 @@ function Home({ sectionRefs }: { sectionRefs: any }) {
         </div>
       </div>
 
-      <h1 className=" w-full flex items-center justify-center text-primary-400 text-lg  leading-9 font-extrabold sm:text-4xl sm:leading-10">
-        The Filecoin Network is a revolutionary data decentralized storage
-        platform.
-      </h1>
+      <div {...animatedItem[0]}>
+        <h1 className=" w-full flex items-center justify-center text-primary-400 text-lg  leading-9 font-extrabold sm:text-4xl sm:leading-10">
+          The Filecoin Network is a revolutionary data decentralized storage
+          platform.
+        </h1>
 
-      <h1 className="w-full flex items-center justify-center mt-12 text-primary-400 text-lg leading-10 font-extrabold sm:text-4xl sm:leading-10">
-        However, accessibility issues have prevented many users from using it.
-        <br />
-        To make the Filecoin Network accessible to more users,
-        <br /> we solved the accessibility problem.
-      </h1>
+        <h1 className="w-full flex items-center justify-center mt-12 text-primary-400 text-lg leading-10 font-extrabold sm:text-4xl sm:leading-10">
+          However, accessibility issues have prevented many users from using it.
+          <br />
+          To make the Filecoin Network accessible to more users,
+          <br /> we solved the accessibility problem.
+        </h1>
+      </div>
 
       <div className="mt-12 flex w-full p-10 bg-primary-100 justify-center items-center flex-col">
         <h1 className="text-primary-500 text-shadow-gray text-5xl mb-20 leading-9 font-extrabold  sm:leading-10">
@@ -188,7 +201,7 @@ function Home({ sectionRefs }: { sectionRefs: any }) {
         </h1>
 
         <div className="flex flex-row ">
-          <div className="flex items-center flex-col m-16">
+          <div {...animatedItem[2]} className="flex items-center flex-col m-16">
             <AiFillCloseCircle className="text-primary-500 w-28 h-28 text-5xl mb-3" />
             <h2 className="text-primary-700 mb-6 text-xl font-bold">
               {" "}
