@@ -3,9 +3,11 @@ import NavBar from "./NavBar";
 import { useConnectWalletbyMetamask, useWallet } from "../states/wallet.state";
 import { ellipsisAddress } from "../utils/ellipsisAddress";
 import logo from "../../public/logo.png";
+import eth from "../assets/tokens/eth.png";
 
 import { BigNumber, ethers } from "ethers";
 import { runMain } from "../utils/getBalancesByAlchemy";
+import Loading from "./common/Loading";
 import { providers } from "ethers";
 
 interface Account {
@@ -14,9 +16,11 @@ interface Account {
   ens: { name: string | undefined; avatar: string | undefined };
 }
 
-interface TokenBalance {
-  contractAddress: string;
-  balance: BigNumber;
+interface TokenInfos {
+  logo: string;
+  name: string;
+  balance: string;
+  symbol: string;
 }
 
 function Header({ handleClickNavLink }: { handleClickNavLink: any }) {
@@ -24,19 +28,29 @@ function Header({ handleClickNavLink }: { handleClickNavLink: any }) {
     useConnectWalletbyMetamask();
   //const chain = Chain.get(chainId);
 
-  const [TokenBalance, setTokenBalance] = useState<TokenBalance[] | null>(null);
+  const [TokenBalance, setTokenBalance] = useState<TokenInfos[] | null>(null);
 
   const [ethBalance, setEthBalance] = useState<string | null>(null);
 
   const getEthBalance = async (account: string) => {
-    console.log("ji");
     if (!account) return;
     if (!window.ethereum) return;
     const provider = new ethers.providers.Web3Provider(window.ethereum as any);
     const balance = await provider?.getBalance(account);
-    console.log(balance?.toString());
+    const formatBalance = ethers.utils.formatEther(balance?.toString());
+    const fixedBalance = parseFloat(formatBalance).toFixed(4);
+    console.log(fixedBalance);
 
-    setEthBalance(balance?.toString());
+    setEthBalance(ethers.utils.formatEther(balance?.toString()));
+  };
+
+  const getTokenInfos = async (account: string) => {
+    if (!account) return;
+    if (!window.ethereum) return;
+    const TokenInfos = await runMain(account);
+    setTokenBalance(TokenInfos);
+    console.log(TokenInfos);
+    return TokenInfos;
   };
 
   const onDisconnect = () => {
@@ -45,7 +59,9 @@ function Header({ handleClickNavLink }: { handleClickNavLink: any }) {
 
   useEffect(() => {
     if (!account) return;
-    runMain(account);
+    //getTokenInfos(account);
+    console.log("hi");
+
     getEthBalance(account);
   }, [account]);
 
@@ -65,16 +81,39 @@ function Header({ handleClickNavLink }: { handleClickNavLink: any }) {
             >
               {ellipsisAddress(account)}
             </button>
-            <div className="flex justify-center  bg-slate-500 top-32  w-[250px] h-full absolute ">
-              ho
-            </div>
-
-            {TokenBalance?.map((tokenBalance) => (
-              <div key={tokenBalance.contractAddress}>
-                {tokenBalance.contractAddress} :{" "}
-                {tokenBalance.balance.toString()}
+            <div className="text-white bg-slate-700 flex flex-col items-center p-4   top-32  w-[250px] h-full absolute ">
+              <div className="flex items-center">
+                ETH
+                <img className="w-10 h-10" src={eth} alt="eth" />
+                {ethBalance ? parseFloat(ethBalance).toFixed(4) : ""} ETH
               </div>
-            ))}
+
+              {TokenBalance ? (
+                <>
+                  {TokenBalance?.map((tokenBalance) => (
+                    <div className="flex items-center " key={tokenBalance.name}>
+                      {tokenBalance.name} :{" "}
+                      {tokenBalance.logo ? (
+                        <img
+                          src={tokenBalance.logo}
+                          className="w-10 h-10"
+                          alt="logo"
+                        />
+                      ) : (
+                        ""
+                      )}
+                      {tokenBalance.balance
+                        ? parseFloat(tokenBalance.balance).toFixed(4)
+                        : ""}
+                      {tokenBalance.symbol}
+                    </div>
+                  ))}
+                </>
+              ) : (
+                // <Loading />
+                <></>
+              )}
+            </div>
           </div>
         ) : (
           <button

@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import Loading from "../common/Loading";
 import axios from "axios";
+import lighthouse from "@lighthouse-web3/sdk";
 
 const FileUploader: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [ipfsHash, setIpfsHash] = useState("");
+  const [fileSize, setFileSize] = useState("");
 
   const [dragging, setDragging] = useState(false);
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
@@ -29,7 +31,8 @@ const FileUploader: React.FC = () => {
   const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     setDragging(false);
-    const file = event.dataTransfer?.files?.[0];
+    // const file = event.dataTransfer?.files?.[0];
+    const file = event.dataTransfer.files;
     if (file) {
       setUploadedFile(file);
     }
@@ -74,6 +77,32 @@ const FileUploader: React.FC = () => {
     setLoading(false);
   };
 
+  const progressCallback = (progressData) => {
+    let percentageDone =
+      100 - (progressData?.total / progressData?.uploaded)?.toFixed(2);
+    console.log(percentageDone);
+  };
+
+  const uploadToLighthouse = async () => {
+    if (!uploadedFile) {
+      return;
+    }
+    setLoading(true);
+
+    const response = await lighthouse.upload(
+      uploadedFile,
+      import.meta.env.VITE_LH_API_KEY,
+      progressCallback
+    );
+    if (response.data.Hash) {
+      setIpfsHash(response.data.Hash);
+      setFileSize(response.data.Size);
+    }
+
+    console.log(response);
+    setLoading(false);
+  };
+
   return (
     <div className="flex flex-col justify-center items-center">
       <>
@@ -92,6 +121,7 @@ const FileUploader: React.FC = () => {
           <p>Drag and drop a file here</p>
         </div>
       </>
+
       {uploadedFile ? (
         <div className="flex flex-col items-center justify-center mt-8">
           <p className="text-xl font-semibold">
@@ -99,13 +129,13 @@ const FileUploader: React.FC = () => {
           </p>
           <img
             className="m-4"
-            src={URL.createObjectURL(uploadedFile)}
+            src={URL.createObjectURL(uploadedFile[0])}
             alt="Uploaded"
             style={{ maxWidth: "300px" }}
           />
           <button
             className="w-[150px] h-[50px] m-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 "
-            onClick={uploadToIpfs}
+            onClick={uploadToLighthouse}
             disabled={!uploadedFile || loading}
           >
             Upload to IPFS
@@ -118,7 +148,14 @@ const FileUploader: React.FC = () => {
       {loading && <Loading />}
 
       {ipfsHash && (
-        <div className="text-xl font-extrabold m-4">IPFS Hash: {ipfsHash}</div>
+        <>
+          <div className="text-xl font-extrabold m-4">
+            IPFS Hash: {ipfsHash}
+          </div>
+          <div className="text-xl font-extrabold m-4">
+            File Size: {fileSize}
+          </div>
+        </>
       )}
     </div>
   );

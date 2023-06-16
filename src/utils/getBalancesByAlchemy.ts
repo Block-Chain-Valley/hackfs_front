@@ -1,11 +1,20 @@
 // Setup: npm install alchemy-sdk
 import { Alchemy, Network } from "alchemy-sdk";
 
+interface TokenInfo {
+  logo: string;
+  name: string;
+  balance: string;
+  symbol: string;
+}
+
 const config = {
   apiKey: import.meta.env.VITE_ALCHEMY_KEY as string,
   network: Network.ETH_MAINNET,
 };
+
 const alchemy = new Alchemy(config);
+const TokenInfos: TokenInfo[] = [];
 
 const main = async (address: string) => {
   // Wallet address
@@ -33,19 +42,28 @@ const main = async (address: string) => {
 
     // Compute token balance in human-readable format
     balance = balance / Math.pow(10, metadata.decimals);
-    balance = balance.toFixed(2);
+    balance = balance.toFixed(4);
+    if (balance === "0.00") continue;
 
     // Print name, balance, and symbol of token
-    console.log(
-      `${i++}. ${metadata.logo} ${metadata.name}: ${balance} ${metadata.symbol}`
-    );
+    // console.log(
+    //   `${i++}. ${metadata.logo} ${metadata.name}: ${balance} ${metadata.symbol}`
+    // );
+    TokenInfos.push({
+      logo: metadata.logo,
+      name: metadata.name,
+      balance: balance,
+      symbol: metadata.symbol,
+    });
   }
+  return TokenInfos;
 };
 
 export const runMain = async (address: string) => {
   try {
-    await main(address);
-    process.exit(0);
+    const TokenInfos = await main(address);
+
+    return TokenInfos;
   } catch (error) {
     console.log(error);
     process.exit(1);

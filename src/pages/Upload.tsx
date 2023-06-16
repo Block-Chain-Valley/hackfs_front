@@ -1,5 +1,3 @@
-import lighthouse from "@lighthouse-web3/sdk";
-
 import UploadFileToIPFS from "../components/upload/UploadFileToIPFS";
 interface ProgressData {
   total: number;
