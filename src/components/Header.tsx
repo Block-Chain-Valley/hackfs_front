@@ -81,7 +81,7 @@ function Header({ handleClickNavLink }: { handleClickNavLink: any }) {
             >
               {ellipsisAddress(account)}
             </button>
-            <div className="text-white bg-slate-700 flex flex-col items-center p-4   top-32  w-[250px] h-full absolute ">
+            <div className="text-white bg-slate-700 flex flex-col items-center    top-32   w-[250px] h-full absolute ">
               <div className="flex items-center">
                 ETH
                 <img className="w-10 h-10" src={eth} alt="eth" />
