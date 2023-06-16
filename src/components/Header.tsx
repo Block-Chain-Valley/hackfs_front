@@ -10,6 +10,8 @@ import { runMain } from "../utils/getBalancesByAlchemy";
 import Loading from "./common/Loading";
 import { providers } from "ethers";
 
+import { MdAccountCircle } from "react-icons/md";
+
 interface Account {
   address: string;
   balance: string | null;
@@ -31,6 +33,12 @@ function Header({ handleClickNavLink }: { handleClickNavLink: any }) {
   const [TokenBalance, setTokenBalance] = useState<TokenInfos[] | null>(null);
 
   const [ethBalance, setEthBalance] = useState<string | null>(null);
+
+  const [popUp, setPopUp] = useState<boolean>(false);
+
+  const clickPopUp = () => {
+    setPopUp(!popUp);
+  };
 
   const getEthBalance = async (account: string) => {
     if (!account) return;
@@ -75,16 +83,45 @@ function Header({ handleClickNavLink }: { handleClickNavLink: any }) {
 
         {account ? (
           <div className="flex items-center justify-center">
-            <button
-              className="flex items-center justify-center p-4 border-4 border-blue-500 rounded-md "
-              onClick={onDisconnect}
+            <div className="flex  items-center justify-center">
+              <button
+                className="flex items-center justify-center p-4 border-2 border-blue-500 rounded-md "
+                onClick={onDisconnect}
+              >
+                <MdAccountCircle
+                  className="mr-2 "
+                  style={{
+                    fontSize: "2rem",
+                    color: "",
+                  }}
+                />
+                {ellipsisAddress(account)}
+              </button>
+              {popUp ? (
+                <button
+                  className="flex font-semibold items-center ml-2 justify-center p-2 border-b-2 border-secondary hover:border-gray-100  "
+                  onClick={clickPopUp}
+                >
+                  Close ∧
+                </button>
+              ) : (
+                <button
+                  className="flex font-semibold items-center ml-2 justify-center p-2 border-b-2 border-secondary hover:border-gray-100  "
+                  onClick={clickPopUp}
+                >
+                  See all Tokens ∨
+                </button>
+              )}
+            </div>
+            <div
+              className={` ${
+                popUp ? " " : "hidden"
+              } font-mono bg-secondary flex flex-col  items-center  p-4  top-32 right-[0px]   w-[200px] h-full absolute `}
             >
-              {ellipsisAddress(account)}
-            </button>
-            <div className="text-white bg-slate-700 flex flex-col items-center    top-32   w-[250px] h-full absolute ">
-              <div className="flex items-center">
+              <div className="mb-2">보유한 토큰 목록</div>
+              <div className="flex mb-2 items-center">
                 ETH
-                <img className="w-10 h-10" src={eth} alt="eth" />
+                <img className="w-6 h-6" src={eth} alt="eth" />
                 {ethBalance ? parseFloat(ethBalance).toFixed(4) : ""} ETH
               </div>
 

@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import ROUTES from "../routes";
+import { AiFillHome } from "react-icons/ai";
+import { BiUpload } from "react-icons/bi";
+import { LuLayoutDashboard } from "react-icons/lu";
 import { cn } from "../utils/cn";
 
 function NavBar({ handleClickNavLink }: { handleClickNavLink: any }) {
@@ -18,14 +21,17 @@ function NavBar({ handleClickNavLink }: { handleClickNavLink: any }) {
           to={ROUTES.HOME}
         >
           <div className="flex items-center px-3">
-            <p
+            <div
               className={cn(
                 "font-lg",
                 location.pathname === "/" ? "font-semibold" : "text-neutral-400"
               )}
             >
-              home
-            </p>
+              <div className="flex items-center justify-center">
+                <AiFillHome className="mr-2" />
+                Home
+              </div>
+            </div>
           </div>
         </Link>
 
@@ -47,7 +53,10 @@ function NavBar({ handleClickNavLink }: { handleClickNavLink: any }) {
                   : "text-neutral-400"
               )}
             >
-              Upload
+              <div className="flex items-center justify-center">
+                <BiUpload className="mr-2" />
+                Upload
+              </div>
             </p>
           </div>
         </Link>
@@ -69,7 +78,10 @@ function NavBar({ handleClickNavLink }: { handleClickNavLink: any }) {
                   : "text-neutral-400"
               )}
             >
-              About
+              <div className="flex items-center justify-center">
+                <LuLayoutDashboard className="mr-2" />
+                DashBoard
+              </div>
             </p>
           </div>
         </Link>

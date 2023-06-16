@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Loading from "../common/Loading";
 import axios from "axios";
 import lighthouse from "@lighthouse-web3/sdk";
-
+import { AiOutlineArrowRight } from "react-icons/ai";
 const FileUploader: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [ipfsHash, setIpfsHash] = useState("");
@@ -141,15 +141,27 @@ const FileUploader: React.FC = () => {
       {loading && <Loading />}
 
       {ipfsHash && (
-        <>
-          <div className="text-xl font-extrabold m-4">
-            IPFS Hash: {ipfsHash}
+        <div className="flex items-center justify-center">
+          <div>
+            <div className="text-xl font-bold m-4">IPFS Hash: {ipfsHash}</div>
+            <div className="text-xl font-bold m-4">File Size: {fileSize}</div>
           </div>
-          <div className="text-xl font-extrabold m-4">
-            File Size: {fileSize}
+          <div>
+            <button className="w-[150px] h-[50px] text-xl m-4 border-b-2 border-blue-500 text-white hover:border-blue-600 ">
+              <a
+                className="flex  items-center justify-center"
+                href={`https://ipfs.io/ipfs/${ipfsHash}`}
+                target="_blank"
+              >
+                <AiOutlineArrowRight className="mr-2" /> View on IPFS
+              </a>
+            </button>
           </div>
-        </>
+        </div>
       )}
+      <div className="mt-12 text-3xl  font-extrabold">
+        파일코인 네트워크에 영구적으로 저장하고 싶다면 아래 버튼을 눌러주세요
+      </div>
     </div>
   );
 };
