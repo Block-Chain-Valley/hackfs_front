@@ -67,18 +67,17 @@ function Header({ handleClickNavLink }: { handleClickNavLink: any }) {
 
   useEffect(() => {
     if (!account) return;
-    getTokenInfos(account);
-    console.log("hi");
+    //getTokenInfos(account);
 
     getEthBalance(account);
-  }, [account]);
+  }, [ethBalance, popUp]);
 
   return (
-    <div className="bg-none flex-col items-center">
-      <div className="flex items-center justify-between m-6 ">
+    <div className=" bg-gradient-to-r from-blue-500 to-blue-700 flex-col items-center">
+      <div className="flex h-[250px] items-center justify-between mx-6 ">
         <div className="flex justify-center items-center">
           <img src={logo} className="w-24 h-24" alt="logo" />
-          <div className="m-auto">This is Template</div>
+          <div className="m-auto text-5xl font-extrabold">This is Template</div>
         </div>
 
         {account ? (

@@ -24,7 +24,7 @@ function NavBar({ handleClickNavLink }: { handleClickNavLink: any }) {
             <div
               className={cn(
                 "font-lg",
-                location.pathname === "/" ? "font-semibold" : "text-neutral-400"
+                location.pathname === "/" ? "font-semibold" : "text-blue-800"
               )}
             >
               <div className="flex items-center justify-center">
@@ -50,7 +50,7 @@ function NavBar({ handleClickNavLink }: { handleClickNavLink: any }) {
                 "font-lg",
                 location.pathname === "/upload"
                   ? "font-semibold"
-                  : "text-neutral-400"
+                  : "text-blue-800"
               )}
             >
               <div className="flex items-center justify-center">
@@ -75,7 +75,7 @@ function NavBar({ handleClickNavLink }: { handleClickNavLink: any }) {
                 "font-lg",
                 location.pathname === "/about"
                   ? "font-semibold"
-                  : "text-neutral-400"
+                  : "text-blue-800"
               )}
             >
               <div className="flex items-center justify-center">

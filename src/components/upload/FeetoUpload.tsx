@@ -1,8 +1,11 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
+import SetAllTokenFees from "./setAllTokenFees";
+import { BsArrowRight } from "react-icons/bs";
+import Fil from "../../assets/tokens/fil.png";
 
 interface FilecoinUploadProps {
-  fileSize: string;
+  fileSize: any;
 }
 
 const FeetoUpload: React.FC<FilecoinUploadProps> = ({ fileSize }) => {
@@ -20,10 +23,22 @@ const FeetoUpload: React.FC<FilecoinUploadProps> = ({ fileSize }) => {
   }, [fileSize]);
 
   return (
-    <div className="flex w-256  justify-between  font-bold p-4 ">
-      <div className="">업로드할 데이터 크기: {fileSize} 기가바이트</div>
-
-      <p>필요한 FIL 양: {filAmount} FIL</p>
+    <div className="flex flex-col w-256  justify-between  font-bold p-4 ">
+      <div className="flex text-2xl w-[800px] items-center justify-around">
+        <div className="">업로드할 데이터 크기: {fileSize} 기가바이트</div>
+        <BsArrowRight style={{ fontSize: "30px" }} />
+        <div className="flex">
+          필요한 FIL
+          <img
+            className="mr-2 ml-2"
+            src={Fil}
+            alt="fil"
+            style={{ width: "30px" }}
+          />{" "}
+          : {filAmount} FIL
+        </div>
+      </div>
+      <SetAllTokenFees totalFee={filAmount} />
     </div>
   );
 };

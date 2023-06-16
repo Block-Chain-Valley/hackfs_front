@@ -14,9 +14,9 @@ const config = {
 };
 
 const alchemy = new Alchemy(config);
-const TokenInfos: TokenInfo[] = [];
 
 const main = async (address: string) => {
+  const TokenInfos: TokenInfo[] = [];
   // Wallet address
 
   // Get token balances
@@ -43,6 +43,7 @@ const main = async (address: string) => {
     // Compute token balance in human-readable format
     balance = balance / Math.pow(10, metadata.decimals);
     balance = balance.toFixed(4);
+    if (metadata.name == null) continue;
     if (balance === "0.00") continue;
 
     // Print name, balance, and symbol of token

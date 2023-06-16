@@ -7,6 +7,7 @@ import { FileSwap, FreeERC20 } from "../types";
 import { ethers, utils } from "ethers";
 import FreeERC20ABI from "../abi/FreeERC20.json";
 import FileSwapABI from "../abi/FileSwap.json";
+import { fetchFilFee } from "../utils/getFilFee";
 
 function Home({ sectionRefs }: { sectionRefs: any }) {
   const { account, chainId } = useWallet();
@@ -104,6 +105,7 @@ function Home({ sectionRefs }: { sectionRefs: any }) {
       <button onClick={() => mintUSDT(account)}>Mint FileUSDT</button>
       <button onClick={() => getUSDTBalance(account)}>view FileUSDT</button>
       <button onClick={() => swap()}>swap</button>
+      <button onClick={() => fetchFilFee()}>getFilFee</button>
 
       <div className="flex items-center  h-[604px] mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <div className="flex-col mr-4">
