@@ -3,6 +3,7 @@ import Loading from "../common/Loading";
 import axios from "axios";
 import lighthouse from "@lighthouse-web3/sdk";
 import { AiOutlineArrowRight } from "react-icons/ai";
+import FeetoUpload from "./FeetoUpload";
 const FileUploader: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [ipfsHash, setIpfsHash] = useState("");
@@ -161,6 +162,10 @@ const FileUploader: React.FC = () => {
       )}
       <div className="mt-12 text-3xl  font-extrabold">
         파일코인 네트워크에 영구적으로 저장하고 싶다면 아래 버튼을 눌러주세요
+      </div>
+      <div>
+        {/* 1기가바이트 데이터를 업로드할 때 필요한 FIL 양을 표시 */}
+        <FeetoUpload fileSize={fileSize} />
       </div>
     </div>
   );

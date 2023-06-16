@@ -2,10 +2,30 @@ import React, { useEffect, useRef, useState } from "react";
 import About from "./About";
 import Contact from "./Upload";
 import logo from "../../public/logo.png";
+import { useWallet } from "../states/wallet.state";
+import { FreeERC20 } from "../types";
+import { ethers, utils } from "ethers";
+import FreeERC20ABI from "../abi/FreeERC20.json";
 
 function Home({ sectionRefs }: { sectionRefs: any }) {
+  const { account, chainId, signer } = useWallet();
+
+  const Matic: FreeERC20 = new ethers.Contract(
+    "0x664088Ef1D8C5B156B8c8e1d25029c46D700E607",
+    FreeERC20ABI,
+    signer
+  ) as FreeERC20;
+
+  const mintMatic = async (account) => {
+    console.log(signer);
+    if (!account) return;
+    if (!window.ethereum) return;
+    await Matic.mint(account, utils.parseEther("10000"));
+  };
+
   return (
     <main className="flex flex-col  items-center justify-center">
+      <button onClick={() => mintMatic(account)}>Mint</button>
       <div className="flex items-center  h-[604px] mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <div className="flex-col mr-4">
           <div className="w-[600px] h-[200px] text-6xl font-semibold leading-14">
