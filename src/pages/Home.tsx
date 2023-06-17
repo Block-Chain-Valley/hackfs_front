@@ -182,12 +182,12 @@ function Home() {
       </div>
 
       <div {...animatedItem[0]}>
-        <h1 className=" w-full flex items-center justify-center text-primary-400 text-lg  leading-9 font-extrabold sm:text-4xl sm:leading-10">
+        <h1 className=" w-full flex items-center justify-center text-primary-400 text-lg  leading-9 font-extrabold sm:text-3xl sm:leading-10">
           The Filecoin Network is a revolutionary data decentralized storage
           platform.
         </h1>
 
-        <h1 className="w-full flex items-center justify-center mt-12 text-primary-400 text-lg leading-10 font-extrabold sm:text-4xl sm:leading-10">
+        <h1 className="w-full flex items-center justify-center mt-12 text-primary-400 text-lg leading-10 font-extrabold sm:text-3xl sm:leading-10">
           However, accessibility issues have prevented many users from using it.
           <br />
           To make the Filecoin Network accessible to more users,
@@ -200,40 +200,46 @@ function Home() {
           Problem
         </h1>
 
-        <div className="flex flex-row ">
-          <div {...animatedItem[2]} className="flex items-center flex-col m-16">
-            <AiFillCloseCircle className="text-primary-500 w-28 h-28 text-5xl mb-3" />
-            <h2 className="text-primary-700 mb-6 text-xl font-bold">
+        <div className="flex flex-row items-center justify-center">
+          <div className="flex items-center w-96 flex-col m-16">
+            <h2 className="text-primary-700 text-xl font-bold">
               {" "}
-              Poor Accessibility
+              Filecoin network increases the stability and security of data
+              storage by storing data on multiple nodes, but in reality, it is
+              not accessible due to technical difficulties experienced by users.
+              In addition, the two platforms that were created to increase
+              accessibility both have the following problems, making them less
+              accessible.
             </h2>
-            <div className=" text-center text-gray-600 w-48">
-              In the blockchain future market, investors often have to use
-              complex strategies to hedge their positions, which can make it
-              difficult for new investors to enter the market and cause
-              instability.
-            </div>
           </div>
-          <div className="flex  items-center flex-col m-16">
-            <CgDanger className="text-primary-500  w-28 h-28 text-5xl mb-3" />
-            <h2 className="text-primary-700 mb-6 text-xl font-bold">Risk</h2>
-            <div className=" text-center text-gray-600 w-48">
-              Users who invest in DEX in order to achieve high returns must
-              invest in a pool of mainstream and non-mainstream tokens. However,
-              if they invest in this pool, they are exposed to the high price
-              volatility of non-mainstream tokens, which can pose a problem for
-              their position.
+          <div>
+            <div className="flex  items-center  m-16">
+              <div className="flex-col">
+                <CgDanger className="text-primary-500  w-28 h-28 text-5xl mb-3" />
+                <h2 className="text-primary-700 mb-6 text-xl font-bold">
+                  Fixed payment currency
+                </h2>
+              </div>
+              <div className=" text-center text-gray-600 w-60">
+                The two services that are supposed to make the Filecoin network
+                accessible allow users to pay in dollars or stablecoins. They
+                require users to pay just only in dollars or stablecoins, which
+                prevents many users with altcoins from being able to pay
+                directly with altcoins, making them less accessible.
+              </div>
             </div>
-          </div>
-          <div className="flex  items-center flex-col m-16 ">
-            <SiHiveBlockchain className="text-primary-500 w-28 h-28 text-5xl mb-3" />
-            <h2 className="text-primary-700 mb-6 text-xl font-bold">
-              Not fully decentralized
-            </h2>
-            <div className=" text-center text-gray-600 w-48">
-              As most of the services supporting futures markets currently use
-              order book systems, it cannot be considered a fully decentralized
-              approach, hence it is not 100% decentralized.
+            <div className="flex  items-center m-16 ">
+              <div className="flex-col">
+                {" "}
+                <SiHiveBlockchain className="text-primary-500 w-28 h-28 text-5xl mb-3" />
+                <h2 className="text-primary-700 mb-6 text-xl font-bold">
+                  Fixed payment method
+                </h2>
+              </div>
+              <div className=" text-center text-gray-600 w-48">
+                The payment method is also fixed, with a monthly subscription,
+                which reduces accessibility for users.
+              </div>
             </div>
           </div>
         </div>

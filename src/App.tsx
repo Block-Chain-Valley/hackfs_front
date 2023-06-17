@@ -28,7 +28,7 @@ function App() {
       <div className="min-h-screen">
         <Header handleClickNavLink={handleClickNavLink} />
         <Routes>
-          <Route path="/" element={<Home sectionRefs={sectionRefs} />} />
+          <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/upload" element={<Upload />} />
         </Routes>
