@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import DealClientABI from "../../abi/DealClient.json";
 
 import { BigNumber, ethers } from "ethers";
-import { AiOutlineQuestionCircle } from "react-icons/ai";
 
 import Loading from "../common/Loading";
 import { useSigner, useWallet } from "../../states/wallet.state";
@@ -90,7 +89,7 @@ const Inputs = () => {
         const receipt = await transaction.wait();
         console.log(receipt);
         setProposingDeal(false);
-        setTxSubmitted("Transaction submitted! " + receipt.hash);
+        setTxSubmitted("Transaction submitted! " + receipt.blockHash);
 
         dealClient.on("DealProposalCreate", (id, size, verified, price) => {
           console.log(id, size, verified, price);
