@@ -3,6 +3,9 @@ module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      backgroundImage: {
+        filecoin: "url('/public/filecoin.png')",
+      },
       colors: {
         primary: "#1E1E1E",
         secondary: "#2b2b2b",

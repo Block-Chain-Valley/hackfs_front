@@ -144,7 +144,7 @@ function Home() {
 
   return (
     <main className="flex flex-col  items-center justify-center">
-      <div className="flex">
+      {/* <div className="flex">
         <button onClick={() => mintMatic(account)}>Mint FileMatic</button>
         <button onClick={() => getMaticBalance(account)}>view FileMatic</button>
         <button onClick={() => mintKlay(account)}>Mint FileKlay</button>
@@ -153,31 +153,31 @@ function Home() {
         <button onClick={() => getUSDTBalance(account)}>view FileUSDT</button>
         <button onClick={() => swap()}>swap</button>
         <button onClick={() => fetchFilFee()}>getFilFee</button>
-      </div>
-
-      <div className="flex items-center  h-[704px] mx-auto py-12 px-4 sm:px-6 lg:px-8">
-        <div className="flex-col mr-4">
-          <div className="w-[600px] h-[250px] text-8xl font-semibold leading-14">
+      </div> */}
+      {/* bg-[length:1200px_600px] */}
+      <div className="flex bg-black bg-filecoin bg-contain bg-right bg-no-repeat  w-full  h-[604px] mx-auto py-12 px-4 ">
+        <div className="  flex-col items-center justify-center h-[600px] ml-8">
+          <div className="w-[600px] mt-12 m-8 text-8xl font-semibold leading-14">
             Data Storage Swap
           </div>
-          <div className="w-[600px] h-[100px] text-2xl leading-8 ">
+          <div className="ml-8 w-[600px] h-[100px] text-2xl leading-8 ">
             <div className=" font-bold">
               Dataswap, a platform to make using the Filecoin network more
               accessible
             </div>
           </div>
           <Link to={ROUTES.UPLOAD}>
-            <button className=" w-[200px] h-[50px] bg-blue-500 text-white rounded-md">
+            <button className=" ml-48 w-[200px] h-[50px] bg-blue-500 text-white rounded-md">
               Get Started
             </button>
           </Link>
         </div>
         <div>
-          <img
+          {/* <img
             className="w-[600px] h-[500px] rounded-md animate-pulse duration-1000"
             src={logo}
             alt=""
-          />
+          /> */}
         </div>
       </div>
 
@@ -254,18 +254,12 @@ function Home() {
           <div>
             <div className="flex flex-col items-center justify-center">
               <h1 className="text-[36px] mb-2 text-primary-700 font-bold">
-                Hedged Liquidation
+                Diversification of payment currency
               </h1>
               <p className="text-primary-900 w-[600px]">
-                Liquidators choose one pair of an asset, the amount to invest,
-                an asset of either to farm and margin ratio aka. volatility. A
-                portion of the base tokens will be swapped to farm tokens,
-                creating a stake consisting of both tokens with equivalent
-                value. The other portion calculated by volatility will enter
-                futures contract that commits to swapping the farm token back to
-                a predetermined amount of base tokens in the future. One
-                intriguing fact from the function is that it enables both
-                transaction and hedging at one transaction.
+                We diversified our payment methods by adding altcoins as a
+                payment method among cryptocurrencies. This allows altcoin
+                holders to easily access Filecoin Network services.
               </p>
             </div>
           </div>
@@ -282,16 +276,12 @@ function Home() {
           <div>
             <div className="flex flex-col items-center justify-center">
               <h1 className="text-[36px] mb-2 text-primary-700 font-bold">
-                AMM Integration
+                Flexibility in payment method
               </h1>
               <p className="text-primary-900 w-[600px]">
-                Defutures is fully flexible as it welcomes multiple chains and
-                layers, and to DeFi protocols with an existing AMM. It is
-                structured to focus solely on providing low-risk investment
-                products to the user, and at the same time guaranteeing constant
-                profits. Therefore being designed in a simple, straightforward
-                manner, scalability throughout the entire blockchain system is
-                relatively easily drawn.
+                Our service requires payment for each file upload, which allows
+                users who want to upload small amounts of data to the Filecoin
+                Network.
               </p>
             </div>
           </div>
@@ -317,59 +307,6 @@ function Home() {
 
           <div>
             <img src={home3} />
-          </div>
-        </div>
-      </div>
-
-      <div className="m-8 bg-gray-50">
-        <div className="max-w-screen-lg mx-auto py-12 px-4 sm:px-6 lg:px-8">
-          <div className="lg:text-center">
-            <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">
-              Our Team
-            </h2>
-            <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-              Meet our team
-            </p>
-            <p className="mt-4 max-w-2xl text-xl leading-7 text-gray-500 lg:mx-auto">
-              Lorem ipsum dolor sit amet consect adipisicing elit. Possimus
-              magnam voluptatum cupiditate veritatis in accusamus quisquam.
-            </p>
-          </div>
-
-          <div className="mt-10">
-            <ul className="md:grid md:grid-cols-2 md:col-gap-8 md:row-gap-10">
-              <li>
-                <div className="flex">
-                  <div className="flex-shrink-0">
-                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
-                      {/* Heroicon name: globe-alt */}
-                      <svg
-                        className="h-6 w-6"
-                        stroke="currentColor"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M3 9l2 2m0 0l7 7 7-7m-7 7V3"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                  <div className="ml-4">
-                    <h4 className="text-lg leading-6 font-medium text-gray-900">
-                      Competitive exchange rates
-                    </h4>
-                    <p className="mt-2 text-base leading-6 text-gray-500">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Ipsa libero labore natus.
-                    </p>
-                  </div>
-                </div>
-              </li>
-            </ul>
           </div>
         </div>
       </div>
