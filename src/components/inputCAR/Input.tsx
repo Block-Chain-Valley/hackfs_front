@@ -122,7 +122,7 @@ const Inputs = ({ carLink, ipfsHash, fileSize, carSize }) => {
       DealClientABI.abi,
       providerSigner
     ) as DealClient;
-    setDealID("Waiting for acceptance by SP...");
+    setDealID("CID: " + cid + "\nWaiting for acceptance by SP...");
     cid = new CID(commP);
     var refresh = setInterval(async () => {
       console.log(cid.bytes);

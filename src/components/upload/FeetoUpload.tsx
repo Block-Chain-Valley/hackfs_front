@@ -25,7 +25,7 @@ const FeetoUpload: React.FC<FilecoinUploadProps> = ({ fileSize }) => {
   return (
     <div className="flex flex-col w-256  justify-between  font-bold p-4 ">
       <div className="flex text-2xl w-[800px] items-center justify-around">
-        <div className="">Data size to upload: {fileSize} Gigabytes</div>
+        <div className="">Data size to upload: {fileSize} bytes</div>
         <BsArrowRight style={{ fontSize: "30px" }} />
         <div className="flex">
           Required FIL

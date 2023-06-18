@@ -108,7 +108,11 @@ const App = ({ totalFee }) => {
         import.meta.env.VITE_KLAY_ADDRESS_KEY as string,
         import.meta.env.VITE_USDT_ADDRESS_KEY as string,
       ],
-      [utils.parseEther("17"), utils.parseEther("35"), utils.parseEther("20")]
+      [
+        utils.parseEther(tokens[0].amount.toString()),
+        utils.parseEther(tokens[1].amount.toString()),
+        utils.parseEther(tokens[2].amount.toString()),
+      ]
     );
     await tx.wait();
     console.log(tx);
