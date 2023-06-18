@@ -1,8 +1,15 @@
-import { ethers } from "ethers";
 import React, { useEffect, useState } from "react";
-import { useConnectWalletbyMetamask } from "../../states/wallet.state";
+import {
+  useConnectWalletbyMetamask,
+  useSigner,
+  useWallet,
+} from "../../states/wallet.state";
 import { runMain } from "../../utils/getBalancesByAlchemy";
 import Loading from "../common/Loading";
+import FreeERC20ABI from "../../abi/FreeERC20.json";
+import FileSwapABI from "../../abi/FileSwap.json";
+import { FileSwap, FreeERC20 } from "../../types";
+import { ethers, utils } from "ethers";
 
 interface Token {
   name: string;
@@ -17,14 +24,95 @@ interface TokenInfos {
 }
 
 const App = ({ totalFee }) => {
-  const { account, chainId, connect, disconnect } =
-    useConnectWalletbyMetamask();
+  const { account, chainId } = useWallet();
+  const { signer } = useSigner();
   const [tokens, setTokens] = useState<Token[]>([]);
   const [TokenBalance, setTokenBalance] = useState<TokenInfos[] | null>(null);
 
   const [ethBalance, setEthBalance] = useState<string | null>(null);
 
   const [totalAmount, setTotalAmount] = useState<number>(0);
+
+  const Matic: FreeERC20 = new ethers.Contract(
+    import.meta.env.VITE_MATIC_ADDRESS_KEY as string,
+    FreeERC20ABI,
+    signer
+  ) as FreeERC20;
+  const Klay: FreeERC20 = new ethers.Contract(
+    import.meta.env.VITE_KLAY_ADDRESS_KEY as string,
+    FreeERC20ABI,
+    signer
+  ) as FreeERC20;
+  const USDT: FreeERC20 = new ethers.Contract(
+    import.meta.env.VITE_USDT_ADDRESS_KEY as string,
+    FreeERC20ABI,
+    signer
+  ) as FreeERC20;
+  const FileSwap: FileSwap = new ethers.Contract(
+    import.meta.env.VITE_FILESWAP_ADDRESS_KEY as string,
+    FileSwapABI,
+    signer
+  ) as FileSwap;
+  const mintMatic = async (account) => {
+    console.log(signer);
+    if (!account) return;
+    if (!window.ethereum) return;
+    await Matic.mint(account, utils.parseEther("10000"));
+  };
+  const mintKlay = async (account) => {
+    if (!account) return;
+    if (!window.ethereum) return;
+    await Klay.mint(account, utils.parseEther("10000"));
+  };
+  const mintUSDT = async (account) => {
+    if (!account) return;
+    if (!window.ethereum) return;
+    await USDT.mint(account, utils.parseEther("10000"));
+  };
+
+  const getMaticBalance = async (account) => {
+    if (!account) return;
+    if (!window.ethereum) return;
+    const balance = await Matic.balanceOf(account);
+    console.log(utils.formatEther(balance));
+  };
+  const getKlayBalance = async (account) => {
+    if (!account) return;
+    if (!window.ethereum) return;
+    const balance = await Klay.balanceOf(account);
+    console.log(utils.formatEther(balance));
+  };
+  const getUSDTBalance = async (account) => {
+    if (!account) return;
+    if (!window.ethereum) return;
+    const balance = await USDT.balanceOf(account);
+    console.log(utils.formatEther(balance));
+  };
+  const swap = async () => {
+    if (!account) return;
+    await Matic.approve(
+      import.meta.env.VITE_FILESWAP_ADDRESS_KEY as string,
+      utils.parseEther(tokens[1].amount.toString())
+    );
+    await Klay.approve(
+      import.meta.env.VITE_FILESWAP_ADDRESS_KEY as string,
+      utils.parseEther(tokens[0].amount.toString())
+    );
+    await USDT.approve(
+      import.meta.env.VITE_FILESWAP_ADDRESS_KEY as string,
+      utils.parseEther(tokens[2].amount.toString())
+    );
+    const tx = await FileSwap.stake(
+      [
+        import.meta.env.VITE_MATIC_ADDRESS_KEY as string,
+        import.meta.env.VITE_KLAY_ADDRESS_KEY as string,
+        import.meta.env.VITE_USDT_ADDRESS_KEY as string,
+      ],
+      [utils.parseEther("17"), utils.parseEther("35"), utils.parseEther("20")]
+    );
+    await tx.wait();
+    console.log(tx);
+  };
 
   const getEthBalance = async (account: string) => {
     if (!account) return;
@@ -97,12 +185,21 @@ const App = ({ totalFee }) => {
               className="w-[600px] p-2 mt-2 text-center border border-gray-300"
             />
             <div className="flex w-[600px] justify-between">
-              <span>최소: {0}</span> {/* 최소 값 표시 */}
-              <span>현재: {token.amount}</span> {/* 현재 선택된 값 표시 */}
-              <span>최대: {token.max}</span> {/* 최대 값 표시 */}
+              <span>min: {0}</span> {/* 최소 값 표시 */}
+              <span> {token.amount}</span> {/* 현재 선택된 값 표시 */}
+              <span>max: {token.max}</span> {/* 최대 값 표시 */}
             </div>
           </div>
         ))}
+        <button
+          className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          onClick={() => swap()}
+        >
+          swap
+        </button>
+        <h1 className=" mt-8  font-bold text-4xl">
+          Submit is available after swap
+        </h1>
       </div>
     </div>
   );

@@ -261,7 +261,7 @@ const FileUploader: React.FC = () => {
     <div className="flex flex-col justify-center items-center">
       <>
         <div className=" text-2xl font-bold mb-8 ">
-          파일을 IPFS 에 올리세요 , 영구저장되지않음
+          Upload files to IPFS, not permanently stored
         </div>
         {/* <div
           className={`${
@@ -351,7 +351,7 @@ const FileUploader: React.FC = () => {
       {uploadedFile ? (
         <div className="flex flex-col items-center justify-center mt-8">
           <p className="text-xl font-semibold">
-            업로드할 파일: {uploadedFile.name}
+            Upload File: {uploadedFile.name}
           </p>
           <img
             className="m-4"
@@ -397,8 +397,8 @@ const FileUploader: React.FC = () => {
       {ipfsHash && (
         <>
           <div className="mt-12 text-3xl  font-extrabold">
-            파일코인 네트워크에 영구적으로 저장하고 싶다면 아래 버튼을
-            눌러주세요
+            Continue saving to the Filecoin network and hit the button down the
+            page
           </div>
           <div>
             {/* 1기가바이트 데이터를 업로드할 때 필요한 FIL 양을 표시 */}

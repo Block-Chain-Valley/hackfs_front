@@ -30,6 +30,15 @@ const Inputs = ({ carLink, ipfsHash, fileSize, carSize }) => {
   const { account, chainId } = useWallet();
   const { signer } = useSigner();
 
+  const provider = new ethers.providers.JsonRpcProvider(
+    "https://api.calibration.node.glif.io/rpc/v1",
+    314159
+  );
+  const providerSigner = new ethers.Wallet(
+    import.meta.env.VITE_PRIVATE_KEY as string,
+    provider
+  );
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(commP);
@@ -45,14 +54,14 @@ const Inputs = ({ carLink, ipfsHash, fileSize, carSize }) => {
         const dealClient: DealClient = new ethers.Contract(
           contractAddress,
           DealClientABI.abi,
-          signer
+          providerSigner
         ) as DealClient;
 
         const extraParamsV1 = [carLink, carSize, false, false];
         const DealRequestStruct = [
           cid.bytes,
-          // fileSize,
-          "9999999999999999999",
+          fileSize,
+          ,
           false,
           ipfsHash,
           520000,
@@ -111,7 +120,7 @@ const Inputs = ({ carLink, ipfsHash, fileSize, carSize }) => {
     const dealClient: DealClient = new ethers.Contract(
       contractAddress,
       DealClientABI.abi,
-      signer
+      providerSigner
     ) as DealClient;
     setDealID("Waiting for acceptance by SP...");
     cid = new CID(commP);
