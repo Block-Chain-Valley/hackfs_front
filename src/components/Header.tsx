@@ -67,7 +67,7 @@ function Header({ handleClickNavLink }: { handleClickNavLink: any }) {
 
   useEffect(() => {
     if (!account) return;
-    //getTokenInfos(account);
+    getTokenInfos(account);
 
     getEthBalance(account);
   }, [ethBalance, popUp]);
@@ -146,8 +146,7 @@ function Header({ handleClickNavLink }: { handleClickNavLink: any }) {
                   ))}
                 </>
               ) : (
-                // <Loading />
-                <></>
+                <Loading />
               )}
             </div>
           </div>

@@ -13,7 +13,7 @@ const FeetoUpload: React.FC<FilecoinUploadProps> = ({ fileSize }) => {
 
   const calculateFilAmount = () => {
     // 파일코인 네트워크에서 1기가바이트 데이터를 올릴 때 필요한 FIL 양 계산 로직
-    const filPerGigabyte = 0.1; // 1기가바이트당 필요한 FIL 양 (임의의 값)
+    const filPerGigabyte = 0.0001; // 1기가바이트당 필요한 FIL 양 (임의의 값)
     const calculatedFilAmount = fileSize * filPerGigabyte;
     setFilAmount(calculatedFilAmount);
   };
