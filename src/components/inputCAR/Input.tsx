@@ -61,7 +61,7 @@ const Inputs = ({ carLink, ipfsHash, fileSize, carSize }) => {
         const DealRequestStruct = [
           cid.bytes,
           fileSize,
-          ,
+
           false,
           ipfsHash,
           520000,
@@ -133,6 +133,8 @@ const Inputs = ({ carLink, ipfsHash, fileSize, carSize }) => {
       console.log("Checking for deal ID...");
       const dealID = await dealClient.pieceDeals(cid.bytes);
       console.log(dealID);
+      console.log("Deal CID: ", cid);
+
       if (dealID !== undefined && dealID !== BigNumber.from(0)) {
         // If your deal has already been submitted, you can get the deal ID by going to https://calibration.filfox.info/en/deal/<dealID>
         // The link will show up in the frontend: once a deal has been submitted, its deal ID stays constant. It will always have the same deal ID.

@@ -67,7 +67,7 @@ function NavBar({ handleClickNavLink }: { handleClickNavLink: any }) {
           )}
           to={ROUTES.ABOUT}
         >
-          <div className="flex items-center px-3">
+          {/* <div className="flex items-center px-3">
             <div
               className={cn(
                 "font-lg font-bold",
@@ -79,7 +79,7 @@ function NavBar({ handleClickNavLink }: { handleClickNavLink: any }) {
                 DashBoard
               </div>
             </div>
-          </div>
+          </div> */}
         </Link>
       </div>
     </div>
