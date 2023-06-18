@@ -4,14 +4,19 @@ import axios from "axios";
 import lighthouse from "@lighthouse-web3/sdk";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import FeetoUpload from "./FeetoUpload";
+import { fileListToCarIterator } from "../../utils/fileListToCarIterator";
 
 const FileUploader: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [ipfsHash, setIpfsHash] = useState("");
   const [fileSize, setFileSize] = useState("");
+  const [carFileSize, setCarFileSize] = useState("");
+  const [carLink, setCarLink] = useState("");
 
   const [dragging, setDragging] = useState(false);
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  const [files, setFiles] = useState<File | null>(null);
+  // const [carFile, setCarFile] = useState<File | null>(null);
 
   const [text, setText] = useState("");
 
@@ -35,6 +40,7 @@ const FileUploader: React.FC = () => {
     setDragging(false);
     // const file = event.dataTransfer?.files?.[0];
     const file = event.dataTransfer.files;
+
     if (file) {
       setUploadedFile(file as any);
     }
@@ -79,11 +85,29 @@ const FileUploader: React.FC = () => {
     setLoading(false);
   };
 
+  async function createCarBlob() {
+    if (!uploadedFile) {
+      return;
+    }
+
+    const carParts = [];
+    const { root, out } = await fileListToCarIterator(uploadedFile);
+    for await (const chunk of out) {
+      carParts.push(chunk);
+    }
+    const car = new Blob(carParts, {
+      type: "application/car",
+    });
+    return { root, car };
+  }
+
   const uploadToLighthouse = async () => {
     if (!uploadedFile) {
       return;
     }
     setLoading(true);
+
+    const { root, car } = await createCarBlob();
 
     const response = await lighthouse.upload(
       uploadedFile,
@@ -94,6 +118,15 @@ const FileUploader: React.FC = () => {
       setFileSize(response.data.Size);
     }
 
+    const responseCar = await lighthouse.upload(
+      car,
+      import.meta.env.VITE_LH_API_KEY
+    );
+    if (responseCar.data.Hash) {
+      setCarLink(responseCar.data.Link);
+      setCarFileSize(responseCar.data.Size);
+    }
+    console.log(responseCar);
     console.log(response);
     setLoading(false);
   };

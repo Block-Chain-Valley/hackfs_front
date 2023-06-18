@@ -21,6 +21,8 @@ import { Link } from "react-router-dom";
 import ROUTES from "../routes";
 import useScrollFadeIn from "../hooks/useScrollFadeIn";
 
+import { generateCAR } from "../utils/createAndUploadCarFile";
+
 const plans = [
   {
     id: 1,
@@ -154,6 +156,17 @@ function Home() {
         <button onClick={() => swap()}>swap</button>
         <button onClick={() => fetchFilFee()}>getFilFee</button>
       </div> */}
+      <div>
+        <button
+          onClick={() =>
+            generateCAR(
+              "/Users/aaa/Documents/GitHub/hackfs_front/src/assets/home/home1.png"
+            )
+          }
+        >
+          generateCAR
+        </button>
+      </div>
       {/* bg-[length:1200px_600px] */}
       <div className="flex bg-black bg-filecoin bg-contain bg-right bg-no-repeat  w-full  h-[604px] mx-auto py-12 px-4 ">
         <div className="  flex-col items-center justify-center h-[600px] ml-8">
