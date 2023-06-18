@@ -109,8 +109,8 @@ const App = ({ totalFee }) => {
         import.meta.env.VITE_USDT_ADDRESS_KEY as string,
       ],
       [
-        utils.parseEther(tokens[0].amount.toString()),
         utils.parseEther(tokens[1].amount.toString()),
+        utils.parseEther(tokens[0].amount.toString()),
         utils.parseEther(tokens[2].amount.toString()),
       ]
     );
