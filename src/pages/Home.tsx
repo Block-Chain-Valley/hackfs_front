@@ -224,6 +224,7 @@ function Home() {
               Filecoin network increases the stability and security of data
               storage by storing data on multiple nodes, but in reality, it is
               not accessible due to technical difficulties experienced by users.
+              <br />
               In addition, the two platforms that were created to increase
               accessibility both have the following problems, making them less
               accessible.
@@ -239,10 +240,10 @@ function Home() {
               </div>
               <div className=" text-center  w-60">
                 The two services that are supposed to make the Filecoin network
-                accessible allow users to pay in dollars or stablecoins. They
-                require users to pay just only in dollars or stablecoins, which
-                prevents many users with altcoins from being able to pay
-                directly with altcoins, making them less accessible.
+                accessible allow users to pay in dollars or stablecoins. <br />{" "}
+                They require users to pay just only in dollars or stablecoins,
+                which prevents many users with altcoins from being able to pay
+                directly with altcoins, <br /> making them less accessible.
               </div>
             </div>
             <div className="flex items-center justify-between m-16 ">
@@ -254,8 +255,9 @@ function Home() {
                 </h2>
               </div>
               <div className=" text-center  w-60">
-                The payment method is also fixed, with a monthly subscription,
-                which reduces accessibility for users.
+                The payment method is also fixed,
+                <br /> with a monthly subscription, which reduces accessibility
+                for users.
               </div>
             </div>
           </div>
