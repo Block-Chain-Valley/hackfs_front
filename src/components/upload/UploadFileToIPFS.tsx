@@ -19,10 +19,16 @@ function CarDownloadLink({
   rootCid,
   setCar,
 }) {
+  // const async { root, car } = await createCarBlob(files);
   const [carUrl, setCarUrl] = useState();
-  useEffect(async () => {
+  useEffect(() => {
     if (!files || files.length === 0) return;
-    const { root, car } = await createCarBlob(files);
+    const createCarBlob = async (files) => {
+      const { root, car } = await createCarBlob(files);
+      return { root, car };
+    };
+    const { root, car } = createCarBlob(files);
+
     console.log(car);
     const carFile = new File([car], `${root}.car`, {
       type: "application/car",
