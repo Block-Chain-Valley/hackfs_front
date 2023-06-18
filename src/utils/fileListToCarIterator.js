@@ -12,7 +12,7 @@ class MapBlockStore {
     }
   }
   put({ cid, bytes }) {
-    return Promise.resolve(this.store.set(cid, bytes));
+    return Promise.resolve(this.store.set(cid.toString(), bytes));
   }
   get(cid) {
     return Promise.resolve(this.store.get(cid));
@@ -20,17 +20,16 @@ class MapBlockStore {
 }
 
 export async function fileListToCarIterator(
-  uploadFile,
+  fileList,
   blockApi = new MapBlockStore()
 ) {
   const fileEntries = [];
-
-  const blob = new Blob([uploadFile], { type: "text/plain" });
-
-  fileEntries.push({
-    path: blob.name,
-    content: browserReadableStreamToIt(blob.stream()),
-  });
+  for (const file of fileList) {
+    fileEntries.push({
+      path: file.name,
+      content: browserReadableStreamToIt(file.stream()),
+    });
+  }
 
   const options = {
     cidVersion: 1,

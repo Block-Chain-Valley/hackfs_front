@@ -168,7 +168,7 @@ function Home() {
         </button>
       </div>
       {/* bg-[length:1200px_600px] */}
-      <div className="flex bg-black bg-filecoin bg-contain bg-right bg-no-repeat  w-full  h-[604px] mx-auto py-12 px-4 ">
+      <div className="mt-48 flex bg-black bg-filecoin bg-contain bg-right bg-no-repeat  w-full  h-[604px] mx-auto py-12 px-4 ">
         <div className="  flex-col items-center justify-center h-[600px] ml-8">
           <div className="w-[600px] mt-12 m-8 text-8xl font-semibold leading-14">
             Data Storage Swap
@@ -194,7 +194,7 @@ function Home() {
         </div>
       </div>
 
-      <div {...animatedItem[0]}>
+      <div {...animatedItem[0]} className="mt-48 mb-48">
         <h1 className=" w-full flex items-center justify-center text-primary-400 text-lg  leading-9 font-extrabold sm:text-3xl sm:leading-10">
           The Filecoin Network is a revolutionary data decentralized storage
           platform.
@@ -214,8 +214,11 @@ function Home() {
         </h1>
 
         <div className="flex flex-row items-center justify-center">
-          <div className="flex items-center w-96 flex-col m-16">
-            <h2 className="text-primary-700 text-xl font-bold">
+          <div
+            {...animatedItem[2]}
+            className="flex items-center w-[400px] flex-col m-16"
+          >
+            <h2 className="text-primary-700 text-3xl font-bold ">
               {" "}
               Filecoin network increases the stability and security of data
               storage by storing data on multiple nodes, but in reality, it is
@@ -225,15 +228,15 @@ function Home() {
               accessible.
             </h2>
           </div>
-          <div>
-            <div className="flex  items-center  m-16">
-              <div className="flex-col">
+          <div {...animatedItem[1]}>
+            <div className="flex  items-center justify-between  m-16">
+              <div className="flex flex-col items-center justify-center mr-12">
                 <CgDanger className="text-primary-500  w-28 h-28 text-5xl mb-3" />
-                <h2 className="text-primary-700 mb-6 text-xl font-bold">
+                <div className="text-primary-700 mb-6 text-xl font-bold">
                   Fixed payment currency
-                </h2>
+                </div>
               </div>
-              <div className=" text-center text-gray-600 w-60">
+              <div className=" text-center  w-60">
                 The two services that are supposed to make the Filecoin network
                 accessible allow users to pay in dollars or stablecoins. They
                 require users to pay just only in dollars or stablecoins, which
@@ -241,15 +244,15 @@ function Home() {
                 directly with altcoins, making them less accessible.
               </div>
             </div>
-            <div className="flex  items-center m-16 ">
-              <div className="flex-col">
+            <div className="flex items-center justify-between m-16 ">
+              <div className="flex flex-col items-center justify-center mr-12">
                 {" "}
                 <SiHiveBlockchain className="text-primary-500 w-28 h-28 text-5xl mb-3" />
                 <h2 className="text-primary-700 mb-6 text-xl font-bold">
                   Fixed payment method
                 </h2>
               </div>
-              <div className=" text-center text-gray-600 w-48">
+              <div className=" text-center  w-60">
                 The payment method is also fixed, with a monthly subscription,
                 which reduces accessibility for users.
               </div>
@@ -325,7 +328,7 @@ function Home() {
       </div>
 
       <div className="flex bg-primary-50 p-20 w-full justify-center items-center">
-        <div className="bg-gray-100 py-4">
+        <div className=" py-4">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="lg:text-center">
               <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-primary-500 text-shadow-gray sm:text-4xl">
@@ -340,15 +343,11 @@ function Home() {
               {plans.map((plan) => (
                 <div
                   key={plan.id}
-                  className="flex flex-col justify-start items-center relative p-8 bg-white shadow-lg rounded-md"
+                  className="flex flex-col  items-center relative p-8 bg-white shadow-lg rounded-md"
                 >
                   <div className="flex">
-                    <div className="flex ">
-                      <div className="flex items-center justify-center h-12 w-12 p-8 rounded-md bg-primary-500 text-white">
-                        {plan.title}
-                      </div>
-                    </div>
-                    <div className="flex justify-start ml-4">
+                    <div className="flex "></div>
+                    <div className="flex  items-center ml-4">
                       <h3 className="text-lg leading-6 font-medium text-gray-900">
                         {plan.content}
                       </h3>

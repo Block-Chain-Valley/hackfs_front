@@ -14,16 +14,14 @@ const contractAddress = "0xf4E0C74D76Bf324293bB3B3DA184d164d06F7664";
 
 let cid;
 
-const Inputs = () => {
+const Inputs = ({ carLink, ipfsHash, fileSize, carSize }) => {
   const [commP, setCommP] = useState(
     "baga6ea4seaqkp2pjlh6avlvee6ib2maanav5sc35l5glf3zm6rd6hmfgcx5xeji"
   );
-  const [carLink, setCarLink] = useState(
-    "https://data-depot.lighthouse.storage/api/download/download_car?fileId=862fb115-d24a-4ff1-a1c8-eadbbbfd19cf.car"
-  );
+
   const [errorMessageSubmit, setErrorMessageSubmit] = useState("");
   const [pieceSize, setPieceSize] = useState("32768");
-  const [carSize, setCarSize] = useState("18445");
+
   const [txSubmitted, setTxSubmitted] = useState("");
   const [dealID, setDealID] = useState("");
   const [proposingDeal, setProposingDeal] = useState(false);
@@ -32,27 +30,11 @@ const Inputs = () => {
   const { account, chainId } = useWallet();
   const { signer } = useSigner();
 
-  const handleChangeCommP = (event) => {
-    setCommP(event.target.value);
-  };
-
-  const handleChangeCarLink = (event) => {
-    setCarLink(event.target.value);
-  };
-
-  const handleChangePieceSize = (event) => {
-    setPieceSize(event.target.value);
-  };
-
-  const handleChangeCarSize = (event) => {
-    setCarSize(event.target.value);
-  };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(commP);
     console.log(carLink);
-    console.log(pieceSize);
+    console.log(fileSize);
     console.log(carSize);
 
     try {
@@ -69,15 +51,22 @@ const Inputs = () => {
         const extraParamsV1 = [carLink, carSize, false, false];
         const DealRequestStruct = [
           cid.bytes,
-          pieceSize,
+          // fileSize,
+          "9999999999999999999",
           false,
-          commP,
+          ipfsHash,
           520000,
           1555200,
           0,
           0,
           0,
           1,
+          // 999999999999999,
+          // 999999999999999,
+          // 999999999999999,
+          // 999999999999999,
+          // 999999999999999,
+          // 999999999999999,
           extraParamsV1,
         ];
         console.log(dealClient.interface);
@@ -139,84 +128,9 @@ const Inputs = () => {
   return (
     <div id="container">
       <form className="child-1" onSubmit={handleSubmit}>
-        <div className="flex child-1-hg">
-          <label>Link to CAR file</label>
-
-          <div>
-            " Find a URL to your car file by going to data.fvm.dev and uploading
-            your file (site in development). <br /> You can also go to
-            tech-greedy/generate-car and upload the resulting car file to
-            web3.storage."
-          </div>
-        </div>
-
-        <input
-          className="text-black"
-          type="text"
-          value={carLink}
-          onChange={handleChangeCarLink}
-        />
-
-        <br />
-        <br />
-
-        <div className="flex">
-          <label>commP</label>
-          "This is also known as the Piece CID. <br /> You can go to
-          data.fvm.dev and get this by uploading your file (site in
-          development). <br />
-          This also can be accessed as the output of tech-greedy/generate-car."
-        </div>
-
-        <input
-          className="text-black"
-          type="text"
-          value={commP}
-          onChange={handleChangeCommP}
-        />
-
-        <br />
-        <br />
-
-        <div className="flex">
-          <label>Piece Size:</label>
-          "This is the number of bytes of your Piece (you can read more about
-          Filecoin Pieces in the spec). <br /> You can go to data.fvm.dev and
-          get this by uploading your file (site in development).
-          <br /> This also can be accessed as the output of
-          tech-greedy/generate-car."
-        </div>
-
-        <input
-          className="text-black"
-          type="text"
-          value={pieceSize}
-          onChange={handleChangePieceSize}
-        />
-
-        <br />
-        <br />
-
-        <div className="flex">
-          "This is the size of the CAR file in bytes. <br /> You can go to
-          data.fvm.dev and get this by uploading your file (site in
-          development). <br /> This can be accessed as the output of
-          tech-greedy/generate-car."
-        </div>
-
-        <input
-          className="text-black"
-          type="text"
-          value={carSize}
-          onChange={handleChangeCarSize}
-        />
-
-        <br />
-        <br />
-
         <button
           type="submit"
-          style={{ display: "block", width: "50%", margin: "auto" }}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         >
           Submit
         </button>
