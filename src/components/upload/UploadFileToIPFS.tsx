@@ -165,7 +165,7 @@ const FileUploader: React.FC = () => {
   const [text, setText] = useState("");
 
   const [files, setFiles] = useState([]);
-  const [rootCid, setRootCid] = useState();
+  const [rootCid, setRootCid] = useState<any>();
   const [car, setCar] = useState();
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
