@@ -339,7 +339,7 @@ const FileUploader: React.FC = () => {
             style={{ width: "800px" }}
           />
           <button
-            className="w-[150px] h-[50px] m-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 "
+            className="font-bold w-[150px] h-[50px] m-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 "
             onClick={uploadToLighthouse}
             disabled={loading}
           >

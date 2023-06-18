@@ -77,7 +77,7 @@ function Header({ handleClickNavLink }: { handleClickNavLink: any }) {
       <div className="flex  items-center justify-between mx-6 ">
         <div className="flex justify-center items-center">
           <img src={logo} className="w-24 h-24" alt="logo" />
-          <div className="m-auto text-5xl font-extrabold">This is Template</div>
+          <div className="m-auto text-5xl font-extrabold"> Light-Port</div>
         </div>
 
         {account ? (
@@ -115,12 +115,12 @@ function Header({ handleClickNavLink }: { handleClickNavLink: any }) {
             <div
               className={` ${
                 popUp ? " " : "hidden"
-              } font-mono bg-secondary flex flex-col  items-center  p-4  top-32 right-[0px]   w-[200px] h-full absolute `}
+              } font-mono bg-black flex flex-col  items-center  p-4  top-32 right-[0px]   w-[200px] h-full absolute `}
             >
-              <div className="mb-2">보유한 토큰 목록</div>
+              <div className="mb-2">List of tokens</div>
               <div className="flex mb-2 items-center">
                 ETH
-                <img className="w-6 h-6" src={eth} alt="eth" />
+                <img className="w-6 h-6" src={eth} alt="eth" />:
                 {ethBalance ? parseFloat(ethBalance).toFixed(4) : ""} ETH
               </div>
 

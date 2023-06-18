@@ -8,6 +8,7 @@ import { ethers, utils } from "ethers";
 import FreeERC20ABI from "../abi/FreeERC20.json";
 import FileSwapABI from "../abi/FileSwap.json";
 import { fetchFilFee } from "../utils/getFilFee";
+import { HiCurrencyDollar } from "react-icons/hi";
 
 import { AiFillCloseCircle } from "react-icons/ai";
 import { CgDanger } from "react-icons/cg";
@@ -156,7 +157,7 @@ function Home() {
         <button onClick={() => swap()}>swap</button>
         <button onClick={() => fetchFilFee()}>getFilFee</button>
       </div> */}
-      <div>
+      {/* <div>
         <button
           onClick={() =>
             generateCAR(
@@ -166,16 +167,16 @@ function Home() {
         >
           generateCAR
         </button>
-      </div>
+      </div> */}
       {/* bg-[length:1200px_600px] */}
       <div className="mt-48 flex bg-black bg-filecoin bg-contain bg-right bg-no-repeat  w-full  h-[604px] mx-auto py-12 px-4 ">
-        <div className="  flex-col items-center justify-center h-[600px] ml-8">
+        <div className="  flex-col items-center justify-center h-[600px] ml-24">
           <div className="w-[600px] mt-12 m-8 text-8xl font-semibold leading-14">
-            Data Storage Swap
+            Light Port
           </div>
           <div className="ml-8 w-[600px] h-[100px] text-2xl leading-8 ">
             <div className=" font-bold">
-              Dataswap, a platform to make using the Filecoin network more
+              Light Port, a platform to make using the Filecoin network more
               accessible
             </div>
           </div>
@@ -231,7 +232,7 @@ function Home() {
           <div {...animatedItem[1]}>
             <div className="flex  items-center justify-between  m-16">
               <div className="flex flex-col items-center justify-center mr-12">
-                <CgDanger className="text-primary-500  w-28 h-28 text-5xl mb-3" />
+                <HiCurrencyDollar className="text-primary-500  w-28 h-28 text-5xl mb-3" />
                 <div className="text-primary-700 mb-6 text-xl font-bold">
                   Fixed payment currency
                 </div>
@@ -303,63 +304,9 @@ function Home() {
           </div>
         </div>
 
-        <div className="flex flex-row items-center mb-10">
-          <div>
-            <div className="flex flex-col items-center justify-center">
-              <h1 className="text-[36px] mb-2 text-primary-700 font-bold">
-                Market stabilizer
-              </h1>
-              <p className="text-primary-900 w-[600px]">
-                Positions from both ends when placed together, this impacts the
-                whole market to stabilize prize fluctuations as it will act as
-                key axis throughout the duration. In other words, more positions
-                the more impact it will strive the market, creating a firm
-                market price dome reaching stability preventing price sudden
-                peaks. This powerful feature is expected to reach high demands
-                as users tend to look for stable, safe products to invest in.
-              </p>
-            </div>
-          </div>
-
-          <div>
-            <img src={home3} />
-          </div>
-        </div>
-      </div>
-
-      <div className="flex bg-primary-50 p-20 w-full justify-center items-center">
-        <div className=" py-4">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="lg:text-center">
-              <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-primary-500 text-shadow-gray sm:text-4xl">
-                RoadMap
-              </p>
-              <p className="mt-2 text-xl leading-8 tracking-tight text-primary-500 sm:text-4xl">
-                Our Future Plans
-              </p>
-            </div>
-
-            <div className="mt-10 grid grid-cols-1 gap-10 md:grid-cols-3">
-              {plans.map((plan) => (
-                <div
-                  key={plan.id}
-                  className="flex flex-col  items-center relative p-8 bg-white shadow-lg rounded-md"
-                >
-                  <div className="flex">
-                    <div className="flex "></div>
-                    <div className="flex  items-center ml-4">
-                      <h3 className="text-lg leading-6 font-medium text-gray-900">
-                        {plan.content}
-                      </h3>
-                    </div>
-                  </div>
-                  <div className="mt-6 text-gray-500">
-                    <p className="text-base">{plan.detail}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+        <div className="flex flex-row items-center mt-10  font-extrabold text-3xl  mb-[300px]">
+          These two UX improvements will allow more users to use the Filecoin
+          Network.
         </div>
       </div>
     </main>

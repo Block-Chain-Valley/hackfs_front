@@ -97,7 +97,14 @@ const Inputs = ({ carLink, ipfsHash, fileSize, carSize }) => {
     }
   };
   const dealIDButton = () => {
-    return <button onClick={dealIDHandler}>Get deal ID</button>;
+    return (
+      <button
+        className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        onClick={dealIDHandler}
+      >
+        Get deal ID
+      </button>
+    );
   };
 
   const dealIDHandler = async () => {
@@ -126,7 +133,7 @@ const Inputs = ({ carLink, ipfsHash, fileSize, carSize }) => {
     }, 5000);
   };
   return (
-    <div id="container">
+    <div className="flex flex-col items-center" id="container">
       <form className="child-1" onSubmit={handleSubmit}>
         <button
           type="submit"
@@ -146,9 +153,7 @@ const Inputs = ({ carLink, ipfsHash, fileSize, carSize }) => {
       <br />
 
       <div>
-        <div style={{ display: "flex", width: "50%", margin: "auto" }}>
-          {dealIDButton()}
-        </div>
+        <div style={{ display: "flex", margin: "auto" }}>{dealIDButton()}</div>
       </div>
 
       {dealID && (
