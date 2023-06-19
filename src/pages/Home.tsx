@@ -169,9 +169,9 @@ function Home() {
         </button>
       </div> */}
       {/* bg-[length:1200px_600px] */}
-      <div className="mt-48 flex bg-black bg-filecoin bg-contain bg-right bg-no-repeat  w-full  h-[604px] mx-auto py-12 px-4 ">
+      <div className="mt-24 flex bg-black bg-filecoin bg-contain bg-right bg-no-repeat  w-full  h-[604px] mx-auto py-12 px-4 ">
         <div className="  flex-col items-center justify-center h-[600px] ml-24">
-          <div className="w-[600px] mt-12 m-8 text-8xl font-semibold leading-14">
+          <div className="w-[600px]  m-8 text-8xl font-semibold leading-14">
             Light Port
           </div>
           <div className="ml-8 w-[600px] h-[100px] text-2xl leading-8 ">
